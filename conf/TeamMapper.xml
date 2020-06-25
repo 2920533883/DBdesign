@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.TeamMapper">
+
+    <update id="updateMsg">
+        update team
+        <set>
+            <if test="team.id != null">
+                tid = #{team.id},
+            </if>
+            <if test="team.name != null">
+                tname = #{team.name},
+            </if>
+            <if test="team.esDate != null">
+                es_date = #{team.esDate},
+            </if>
+            <if test="team.num != 0">
+                num = #{team.num},
+            </if>
+            <if test="team.coach != null">
+                coach = #{team.coach},
+            </if>
+            <if test="team.address != null">
+                address = #{team.address}
+            </if>
+        </set>
+        <where>
+            id = #{key}
+        </where>
+    </update>
+    <update id="updateId">
+        alter table team drop id;
+        alter table team add id int primary key auto_increment first;
+    </update>
+
+
+    <delete id="deleteTeam">
+        delete from team where tname = #{name}
+    </delete>
+
+    <select id="getAllMsg" resultType="Domain.Team">
+        select tid id, tname name, es_date esDate, address, coach, num from team order by tname
+    </select>
+    <select id="getMsgByName" resultType="Domain.Team">
+            select tid id, tname name, es_date esDate, address, coach, num from team where tname = #{name}
+    </select>
+
+    <insert id="insertTeam">
+        insert into team values (null , #{id}, #{name}, #{num}, #{esDate}, #{address}, #{coach})
+    </insert>
+
+
+</mapper>

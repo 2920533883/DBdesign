@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/iconfont.css">
+    <link rel="stylesheet" href="CSS/Mission1.css">
+
+    <title>Mission1</title>
+</head>
+<body>
+
+<div id="top">
+    <div class="search" @keyup.enter="search()">
+        <label>
+            <input type="text" id="search">
+            <i class="iconfont">&#xe63b;</i>
+        </label>
+    </div>
+    <div class="add">
+        <a href="#" @click="addItem()"><i class="iconfont">&#xe607;</i></a>
+    </div>
+</div>
+<div class="container" id="container">
+    <div class="topic">
+        <ul class="topic_ul">
+            <li class="topic_li">球队编号</li>
+            <li class="topic_li">球队名称</li>
+            <li class="topic_li">教练</li>
+            <li class="topic_li">建队时间</li>
+            <li class="topic_li">人数</li>
+            <li class="topic_li">主场地址</li>
+        </ul>
+    </div>
+    <div class="show" v-for="(item, index) in id">
+        <ul class="show_ul">
+            <li class="show_li">{{item}}</li>
+            <li class="show_li">{{name[index]}}</li>
+            <li class="show_li">{{coach[index]}}</li>
+            <li class="show_li">{{esDate[index]}}</li>
+            <li class="show_li">{{num[index]}}</li>
+            <li class="show_li">{{address[index]}}</li>
+        </ul>
+        <div class="action">
+            <div class="update" @click="changeItem(index)"><a href="#">修改</a></div>
+            <div class="delete" @click="del(index)"><a href="#">删除</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="add-frame" id="add-frame">
+    <div class="close" @click="closeFrame()">
+       <i class="iconfont">&#xe630;</i>
+    </div>
+    <form>
+        <label>
+            <span>球队编号:</span>
+            <input class="input" type="text" id="id">
+        </label>
+        <label >
+            <span>球队名称:</span>
+            <input class="input" type="text" id="name">
+        </label>
+        <label>
+            <span>教练:</span>
+            <input class="input" type="text" id="coach">
+        </label>
+        <label>
+            <span>建队时间:</span>
+            <input class="input" type="text" id="esDate">
+        </label>
+        <label>
+            <span>人数:</span>
+            <input class="input" type="text" id="num">
+        </label>
+        <label>
+            <span>主场地址:</span>
+            <input class="input" type="text" id="address">
+        </label>
+        <input type="submit" value="确认" class="button" @click="submit()">
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+<script src="JS/Mission1.js"></script>
+</body>
+</html>
